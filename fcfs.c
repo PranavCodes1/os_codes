@@ -7,12 +7,12 @@ int pid,at,bt,wt,tat;
 
 int main()
 {
-int n,i;
+int n,i,j;
 
 float wtavg = 0;
 float tatavg = 0;
 
-struct Process p[20];
+struct Process p[20],temp;
 
 printf("Enter no. of processes: ");
 scanf("%d",&n);
@@ -27,6 +27,19 @@ scanf("%d",&p[i].at);
 printf("\n Enter CPU burst time of P%d: ",p[i].pid);
 scanf("%d",&p[i].bt);
 }
+ /* Sort according to arrival time */
+    for(i=0;i<n-1;i++)
+    {
+        for(j=0;j<n-i-1;j++)
+        {
+            if(p[j].at > p[j+1].at)
+            {
+                temp = p[j];
+                p[j] = p[j+1];
+                p[j+1] = temp;
+            }
+        }
+    }
 
 p[0].wt = 0;
 p[0].tat = p[0].bt;
