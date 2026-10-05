@@ -2,31 +2,34 @@
 
 struct Process
 {
-	int pid,at,bt;
+	int pid,at,wt,bt,tat;
 };
 
 int main()
 {
-	int n,i,j;
-	int t = 0;
-
+	int i,j,n;
+	float wtavg = 0;
+	float tatavg = 0;
 	struct Process p[20],temp;
 
-	printf("Enter no.of processes: ");
+
+	printf("Enter no. of processes: ");
 	scanf("%d",&n);
 
 	for(i=0;i<n;i++)
 	{
 		p[i].pid = i + 1;
 
-		printf("Enter arrival time of P%d\n", p[i].pid);
+		printf("Enter arrival time of P%d\n",p[i].pid);
 		scanf("%d",&p[i].at);
 
-		printf("Enter CPU burst time of P%d: ",p[i].pid);
-        	scanf("%d",&p[i].bt);
-    	}
+		printf("Enter CPU burst time of P%d\n",p[i].pid);
+		scanf("%d",&p[i].bt);
 
-	 /* Sort according to arrival time */
+	}
+
+	/* Sort according to arrival time */
+
 	for(i=0;i<n-1;i++)
 	{
 		for(j=0;j<n-i-1;j++)
@@ -41,21 +44,50 @@ int main()
 	}
 
 
+	p[0].wt = 0;
+	p[0].tat = p[0].bt;
 
-	printf("\n Gantt Chart \n");
-	for(i=0;i<n;i++)
+	wtavg = p[0].wt;
+	tatavg = p[0].tat;
+
+
+	for(i=1;i<n;i++)
 	{
-		if(t < p[i].at)
+		p[i].wt = p[i-1].wt + p[i-1].bt - p[i].at;
+
+		if(p[i].wt < 0)
 		{
-			t = p[i].at;
+			p[i].wt = 0;
 		}
 
-		printf("| P%d", p[i].pid);
+		p[i].tat = p[i].wt + p[i].bt;
 
-		t = t + p[i].bt;
+		wtavg += p[i].wt;
+		tatavg += p[i].tat;
 	}
 
+	printf("\nGantt Chart:\n");
+
+	for(i=0;i<n;i++)
+	{
+		printf("|P%d",p[i].pid);
+
+
+	}
 	printf("|\n");
+
+	printf("\nProcess\tAT\tBT\tWT\tTAT\n");
+
+	for(i=0;i<n;i++)
+	{
+		printf("\nP%d\t%d\t%d\t%d\t%d\n",p[i].pid,p[i].at,p[i].bt,p[i].wt,p[i].tat);
+	}
+	wtavg = wtavg / n;
+	tatavg = tatavg /n;
+
+	printf("Average waiting time = %.2f",wtavg);
+	printf("Average turnaround time = %.2f",tatavg);
 
 	return 0;
 }
+
