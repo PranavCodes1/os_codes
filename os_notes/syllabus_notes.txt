@@ -1,0 +1,216 @@
+UNIT 1: Introduction to Operating Systems
+1.1 Operating System Definition
+Definition: An Operating System (OS) is system software that acts as an interface between the user and computer hardware. It manages computer resources and provides services to programs.
+
+Functions of Operating System:
+1. Process Management – Manages running processes.
+2. Memory Management – Allocates and deallocates memory.
+3. File Management – Creates, deletes and manages files.
+4. Device Management – Controls input and output devices.
+5. Security – Protects the system from unauthorized access.
+6. Resource Management – Allocates CPU, memory and other resources.
+7. User Interface – Provides an interface for users.
+Examples: Windows, Linux, macOS, Android and iOS.
+1.2 Computer System Architecture
+Computer system architecture describes how processors are organized in a computer system.
+
+There are three main types:
+1. Single Processor System
+1. Contains only one main CPU.
+2. Executes one instruction at a time.
+3. CPU handles all processing activities.
+4. Simple and less expensive.
+5. Example: Traditional personal computers.
+2. Multiprocessor System
+1. Contains two or more processors.
+2. Processors share memory and other resources.
+3. Performs multiple tasks simultaneously.
+4. Increases system performance.
+5. Improves reliability.
+6. Also called a parallel system.
+Advantages:
+- Increased processing speed.
+- Better resource utilization.
+- Improved reliability.
+- Supports multitasking.
+3. Clustered System
+1. Consists of two or more independent computers connected together.
+2. Computers work together as a single system.
+3. Each computer is called a node.
+4. They share resources through a network.
+5. Used for high availability and high performance.
+Advantages:
+- High reliability.
+- Better performance.
+- Load sharing.
+- Provides backup if one system fails.
+1.3 Operating System Structure
+Operating System structure describes how different components of an OS are organized.
+1. Simple Structure
+1. OS has no well-defined structure.
+2. Components are not divided into separate layers.
+3. All components can interact with each other.
+4. Difficult to maintain and debug.
+5. Example: MS-DOS.
+2. Layered Structure
+1. OS is divided into multiple layers.
+2. Each layer performs a specific function.
+3. Upper layers use services of lower layers.
+4. Makes debugging and maintenance easier.
+5. Provides better organization.
+Advantages:
+- Easy to design.
+- Easy to debug.
+- Better modularity.
+Disadvantages:
+- Slower due to communication between layers.
+- Difficult to define proper layers.
+3. Microkernel Structure
+1. Keeps only essential functions inside the kernel.
+2. Other services run in user space.
+3. Provides communication through message passing.
+4. Improves security and reliability.
+5. Example: MINIX 3.
+Advantages:
+- More secure.
+- Easy to extend.
+- Easy to maintain.
+Disadvantages:
+- Communication overhead.
+- May reduce performance.
+4. Modules Structure
+1. OS is divided into separate modules.
+2. Each module performs a specific function.
+3. Modules can be loaded and unloaded dynamically.
+4. Modules communicate through defined interfaces.
+5. Example: Linux.
+Advantages:
+- Flexible.
+- Easy to maintain.
+- Better organization.
+5. Hybrid Structure
+1. Combines features of different OS structures.
+2. Uses monolithic kernel and microkernel concepts.
+3. Provides better performance and flexibility.
+4. Used in modern operating systems.
+5. Examples: Windows and macOS.
+1.4 Computing Environments
+A computing environment describes how computers and resources are used to perform tasks.
+1. Traditional Computing
+1. Uses desktop computers and workstations.
+2. Computing resources are available locally.
+3. Users interact directly with the computer.
+4. Example: Desktop computer in an office.
+2. Mobile Computing
+1. Uses portable devices.
+2. Provides computing services while moving.
+3. Uses wireless networks.
+4. Examples: Smartphones and tablets.
+3. Distributed Computing
+1. Multiple computers work together.
+2. Computers are connected through a network.
+3. Tasks are divided among different computers.
+4. Improves resource sharing and performance.
+4. Client-Server Computing
+1. Consists of clients and servers.
+2. Client requests services.
+3. Server processes requests and provides responses.
+4. Server manages shared resources.
+5. Example: Web browser requesting a webpage from a web server.
+5. Peer-to-Peer (P2P) Computing
+1. All computers are called peers.
+2. Each computer can act as both client and server.
+3. Resources are shared directly between computers.
+4. No central server is required.
+5. Example: BitTorrent.
+
+Difference between Client-Server and Peer-to-Peer:
+| Client-Server | Peer-to-Peer |
+|---|---|
+| Central server is present. | No central server is required. |
+| Server provides services. | Peers share resources. |
+| Client requests services. | Each peer can request and provide services. |
+| Centralized management. | Decentralized management. |
+
+1.5 Operating System Services
+Operating System provides services to users and programs.
+
+Important OS Services:
+1. User Interface – Provides GUI or CLI.
+2. Program Execution – Loads and executes programs.
+3. I/O Operations – Performs input and output operations.
+4. File System Management – Creates, deletes and manages files.
+5. Communication – Allows processes to communicate.
+6. Error Detection – Detects hardware and software errors.
+7. Resource Allocation – Allocates CPU, memory and devices.
+8. Accounting – Tracks resource usage.
+9. Protection and Security – Prevents unauthorized access.
+1.6 User and Operating System Interface
+An interface allows users to communicate with the operating system.
+
+Types of Interfaces:
+1. Command Line Interface (CLI)
+1. Users interact using text commands.
+2. Commands are entered through a keyboard.
+3. Requires knowledge of commands.
+4. Fast and powerful for experienced users.
+5. Example: Linux Terminal.
+2. Graphical User Interface (GUI)
+1. Uses graphical elements.
+2. Includes icons, windows, menus and buttons.
+3. Easy to use.
+4. Does not require memorizing commands.
+5. Example: Windows Desktop.
+3. Touch Screen Interface
+1. Users interact through touch.
+2. Supports tapping, swiping and gestures.
+3. Commonly used in mobile devices.
+4. Example: Android smartphones.
+1.7 Booting
+Definition: Booting is the process of starting a computer and loading the operating system into main memory.
+
+Steps of Booting:
+1. Power ON – Computer receives electrical power.
+2. BIOS/UEFI – Firmware starts executing.
+3. POST – Checks hardware components.
+4. Bootloader – Finds and loads the operating system kernel.
+5. Kernel Loading – OS kernel is loaded into RAM.
+6. System Initialization – Device drivers and system services are started.
+7. Login Screen – System becomes ready for users.
+Types of Booting:
+1. Cold Booting – Starting a computer from a completely powered-off state.
+2. Warm Booting – Restarting a computer without completely switching off the power.
+1.8 System Calls
+Definition: System calls are the interface between user programs and the operating system kernel. They allow programs to request services from the OS.
+
+Types of System Calls:
+1. Process Control – Create and terminate processes.
+   - Examples: fork(), exit(), wait().
+2. File Management – Create, open, read and write files.
+   - Examples: open(), read(), write(), close().
+3. Device Management – Request and release devices.
+4. Information Maintenance – Get system information.
+   - Examples: getpid(), time().
+5. Communication – Exchange data between processes.
+   - Examples: pipe(), shared memory operations.
+6. Protection – Control access permissions and security.
+   - Example: chmod().
+Advantages:
+- Provides access to OS services.
+- Provides controlled hardware access.
+- Improves security.
+- Simplifies application development.
+1.9 System Programs
+Definition: System programs are software that provide a convenient environment for developing and executing programs.
+
+Types of System Programs:
+1. File Management – Create, delete and copy files.
+2. Status Information – Display system information.
+3. File Modification – Edit and modify files.
+4. Programming Language Support – Compilers and interpreters.
+5. Program Loading and Execution – Load and execute programs.
+6. Communication – Support communication between users and systems.
+7. Background Services – Perform background operations.
+Examples: File Explorer, Command Prompt, Linux Terminal, compilers and text editors.
+
+
