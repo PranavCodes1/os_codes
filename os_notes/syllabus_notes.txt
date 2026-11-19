@@ -11,6 +11,8 @@ Functions of Operating System:
 6. Resource Management – Allocates CPU, memory and other resources.
 7. User Interface – Provides an interface for users.
 Examples: Windows, Linux, macOS, Android and iOS.
+
+
 1.2 Computer System Architecture
 Computer system architecture describes how processors are organized in a computer system.
 
@@ -28,22 +30,27 @@ There are three main types:
 4. Increases system performance.
 5. Improves reliability.
 6. Also called a parallel system.
+
 Advantages:
 - Increased processing speed.
 - Better resource utilization.
 - Improved reliability.
 - Supports multitasking.
+
 3. Clustered System
 1. Consists of two or more independent computers connected together.
 2. Computers work together as a single system.
 3. Each computer is called a node.
 4. They share resources through a network.
 5. Used for high availability and high performance.
+
 Advantages:
 - High reliability.
 - Better performance.
 - Load sharing.
 - Provides backup if one system fails.
+
+
 1.3 Operating System Structure
 Operating System structure describes how different components of an OS are organized.
 1. Simple Structure
@@ -58,10 +65,12 @@ Operating System structure describes how different components of an OS are organ
 3. Upper layers use services of lower layers.
 4. Makes debugging and maintenance easier.
 5. Provides better organization.
+
 Advantages:
 - Easy to design.
 - Easy to debug.
 - Better modularity.
+
 Disadvantages:
 - Slower due to communication between layers.
 - Difficult to define proper layers.
@@ -71,10 +80,12 @@ Disadvantages:
 3. Provides communication through message passing.
 4. Improves security and reliability.
 5. Example: MINIX 3.
+
 Advantages:
 - More secure.
 - Easy to extend.
 - Easy to maintain.
+
 Disadvantages:
 - Communication overhead.
 - May reduce performance.
@@ -84,6 +95,7 @@ Disadvantages:
 3. Modules can be loaded and unloaded dynamically.
 4. Modules communicate through defined interfaces.
 5. Example: Linux.
+
 Advantages:
 - Flexible.
 - Easy to maintain.
@@ -94,29 +106,36 @@ Advantages:
 3. Provides better performance and flexibility.
 4. Used in modern operating systems.
 5. Examples: Windows and macOS.
+
+
 1.4 Computing Environments
 A computing environment describes how computers and resources are used to perform tasks.
+
 1. Traditional Computing
 1. Uses desktop computers and workstations.
 2. Computing resources are available locally.
 3. Users interact directly with the computer.
 4. Example: Desktop computer in an office.
+
 2. Mobile Computing
 1. Uses portable devices.
 2. Provides computing services while moving.
 3. Uses wireless networks.
 4. Examples: Smartphones and tablets.
+
 3. Distributed Computing
 1. Multiple computers work together.
 2. Computers are connected through a network.
 3. Tasks are divided among different computers.
 4. Improves resource sharing and performance.
+
 4. Client-Server Computing
 1. Consists of clients and servers.
 2. Client requests services.
 3. Server processes requests and provides responses.
 4. Server manages shared resources.
 5. Example: Web browser requesting a webpage from a web server.
+
 5. Peer-to-Peer (P2P) Computing
 1. All computers are called peers.
 2. Each computer can act as both client and server.
@@ -145,6 +164,8 @@ Important OS Services:
 7. Resource Allocation – Allocates CPU, memory and devices.
 8. Accounting – Tracks resource usage.
 9. Protection and Security – Prevents unauthorized access.
+
+
 1.6 User and Operating System Interface
 An interface allows users to communicate with the operating system.
 
@@ -155,17 +176,22 @@ Types of Interfaces:
 3. Requires knowledge of commands.
 4. Fast and powerful for experienced users.
 5. Example: Linux Terminal.
+
 2. Graphical User Interface (GUI)
 1. Uses graphical elements.
 2. Includes icons, windows, menus and buttons.
 3. Easy to use.
 4. Does not require memorizing commands.
 5. Example: Windows Desktop.
+
+
 3. Touch Screen Interface
 1. Users interact through touch.
 2. Supports tapping, swiping and gestures.
 3. Commonly used in mobile devices.
 4. Example: Android smartphones.
+
+
 1.7 Booting
 Definition: Booting is the process of starting a computer and loading the operating system into main memory.
 
@@ -177,9 +203,12 @@ Steps of Booting:
 5. Kernel Loading – OS kernel is loaded into RAM.
 6. System Initialization – Device drivers and system services are started.
 7. Login Screen – System becomes ready for users.
+
 Types of Booting:
 1. Cold Booting – Starting a computer from a completely powered-off state.
 2. Warm Booting – Restarting a computer without completely switching off the power.
+
+
 1.8 System Calls
 Definition: System calls are the interface between user programs and the operating system kernel. They allow programs to request services from the OS.
 
@@ -195,11 +224,13 @@ Types of System Calls:
    - Examples: pipe(), shared memory operations.
 6. Protection – Control access permissions and security.
    - Example: chmod().
+
 Advantages:
 - Provides access to OS services.
 - Provides controlled hardware access.
 - Improves security.
 - Simplifies application development.
+
 1.9 System Programs
 Definition: System programs are software that provide a convenient environment for developing and executing programs.
 
@@ -214,3 +245,156 @@ Types of System Programs:
 Examples: File Explorer, Command Prompt, Linux Terminal, compilers and text editors.
 
 
+
+UNIT 2: Processes and Threads
+
+2.1 Process Concept
+What is a Process?
+Definition: A process is a program that is currently in execution.
+
+Characteristics of a Process:
+1. Has its own process ID (PID).
+2. Contains program code.
+3. Has its own memory space.
+4. Uses CPU time and other resources.
+5. Has a process state.
+
+Difference between Program and Process:
+| Program | Process |
+|---|---|
+| Program is a passive entity. | Process is an active entity. |
+| Stored on disk. | Loaded into memory. |
+| Contains instructions. | Executes instructions. |
+| Does not have a process state. | Has a process state. |
+
+Process States
+A process passes through different states during execution.
+
+Five Main Process States:
+1. New – Process is being created.
+2. Ready – Process is waiting for CPU.
+3. Running – Process is currently executing.
+4. Waiting – Process is waiting for an event or I/O operation.
+5. Terminated – Process has completed execution.
+
+Process Control Block (PCB)
+Definition: PCB is a data structure maintained by the operating system to store information about a process.
+
+Information stored in PCB:
+1. Process ID – Unique identification number.
+2. Process State – Current state of process.
+3. Program Counter – Address of next instruction.
+4. CPU Registers – Stores register values.
+5. CPU Scheduling Information – Priority and scheduling details.
+6. Memory Management Information – Memory allocation details.
+7. Accounting Information – CPU usage and time limits.
+8. I/O Status Information – Allocated devices and open files.
+
+Importance: PCB helps the OS manage processes and perform context switching
+
+
+2.2 Process Scheduling
+Definition: Process scheduling is the activity of selecting a process from the ready queue and allocating the CPU to it.
+Scheduling Queues
+1. Job Queue – Contains all processes in the system.
+2. Ready Queue – Contains processes waiting for CPU.
+3. Device Queue – Contains processes waiting for I/O devices.
+
+Types of Schedulers
+1. Long-Term Scheduler (Job Scheduler)
+- Selects processes from the job pool.
+- Loads selected processes into memory.
+- Controls the degree of multiprogramming.
+- Executes less frequently.
+2. Short-Term Scheduler (CPU Scheduler)
+- Selects a process from the ready queue.
+- Allocates CPU to the selected process.
+- Executes very frequently.
+- Must be fast.
+3. Medium-Term Scheduler
+- Temporarily removes processes from memory.
+- Later brings them back into memory.
+- Performs swapping.
+- Helps manage memory.
+
+Context Switch
+Definition: Context switching is the process of saving the state of the current process and loading the state of another process.
+
+Steps:
+1. Stop the currently running process.
+2. Save its CPU state in PCB.
+3. Select another process.
+4. Load its saved state from PCB.
+5. Start execution of the new process.
+
+Disadvantage: Context switching creates overhead because CPU time is spent switching instead of executing processes.
+
+
+2.3 Operations on Processes
+1. Process Creation
+1. A process creates another process.
+2. Creating process is called Parent Process.
+3. New process is called Child Process.
+4. Each process gets a unique PID.
+5. Parent and child may execute simultaneously.
+Example: In UNIX/Linux, fork() is used to create a new process.
+
+2. Process Termination
+1. A process terminates after completing execution.
+2. OS releases its allocated resources.
+3. Exit status is returned to the parent.
+4. A process can also be terminated by another process.
+Reasons for Termination:
+- Normal completion.
+- Error during execution.
+- Memory or resource limit exceeded.
+- Terminated by parent process.
+
+
+3. Synchronization of Parent and Child Processes
+1. Parent and child processes may execute simultaneously.
+2. Parent may wait for the child to complete.
+3. wait() system call is used in UNIX/Linux.
+4. Parent collects the child's termination status.
+5. Synchronization prevents certain execution-related problems.
+
+
+2.4 Threads
+Thread Overview
+Definition: A thread is the smallest unit of CPU execution within a process.
+1. A process can contain one or more threads.
+2. Threads share code, data and files of the same process.
+3. Each thread has its own stack and registers.
+4. Threads execute independently.
+5. Threads are also called lightweight processes.
+
+Benefits of Threads
+1. Responsiveness – Application remains responsive.
+2. Resource Sharing – Threads share process resources.
+3. Economy – Thread creation is less expensive.
+4. Scalability – Uses multiple CPU cores effectively.
+5. Better Performance – Supports concurrent execution.
+
+
+Multithreading Models
+Multithreading models describe the relationship between user threads and kernel threads.
+
+1. Many-to-One Model
+1. Many user threads are mapped to one kernel thread.
+2. Thread management is done in user space.
+3. If one thread blocks, all threads may block.
+4. Cannot achieve true parallelism.
+
+
+2. One-to-One Model
+1. Each user thread is mapped to one kernel thread.
+2. Supports parallel execution.
+3. If one thread blocks, others can continue.
+4. Creating many threads increases overhead.
+
+
+3. Many-to-Many Model
+1. Many user threads are mapped to multiple kernel threads.
+2. Allows multiple threads to execute simultaneously.
+3. Provides better flexibility.
+4. Reduces overhead compared to one-to-one in some implementations.
