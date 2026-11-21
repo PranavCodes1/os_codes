@@ -398,3 +398,624 @@ Multithreading models describe the relationship between user threads and kernel 
 2. Allows multiple threads to execute simultaneously.
 3. Provides better flexibility.
 4. Reduces overhead compared to one-to-one in some implementations.
+
+
+UNIT 3: CPU Scheduling
+
+3.1 Basic Concepts
+
+3.1.1 CPU-I/O Burst Cycle
+Definition: A process execution consists of alternating CPU burst and I/O burst activities.
+1. CPU Burst – Time during which a process uses the CPU.
+2. I/O Burst – Time during which a process performs or waits for I/O operations.
+3. A process alternates between CPU and I/O bursts.
+4. Process terminates after its final CPU burst.
+Example:
+CPU Burst → I/O Burst → CPU Burst → I/O Burst → CPU Burst
+
+3.1.2 CPU Scheduler
+Definition: CPU scheduler selects one process from the ready queue and allocates the CPU to it.
+
+Functions:
+1. Selects the next process.
+2. Allocates CPU to the selected process.
+3. Improves CPU utilization.
+4. Helps in efficient process execution.
+
+3.1.3 Preemptive Scheduling
+Definition: Preemptive scheduling allows the operating system to take the CPU away from a running process and allocate it to another process.
+
+Advantages:
+1. Better response time.
+2. Suitable for interactive systems.
+3. High-priority processes get CPU quickly.
+Disadvantages:
+1. More context switching.
+2. Increased overhead.
+3. More complex implementation.
+Example: Round Robin, SRTF and Preemptive Priority Scheduling.
+
+Non-Preemptive Scheduling: Once a process gets the CPU, it continues until it terminates or enters the waiting state.
+
+Examples: FCFS and Non-Preemptive SJF.
+3.1.4 Dispatcher
+Definition: Dispatcher is the OS component that gives control of the CPU to the process selected by the short-term scheduler.
+
+Functions:
+1. Performs context switching.
+2. Switches to user mode.
+3. Starts execution of the selected process.
+Dispatch Latency: Time taken by the dispatcher to stop one process and start another process.
+
+3.1.5 Scheduling Criteria
+These criteria are used to evaluate CPU scheduling algorithms.
+1. CPU Utilization – Percentage of time CPU remains busy. (Higher is better.)
+2. Throughput – Number of processes completed per unit time. (Higher is better.)
+3. Turnaround Time – Total time taken to complete a process. (Lower is better.)
+4. Waiting Time – Total time spent waiting in the ready queue. (Lower is better.)
+5. Response Time – Time between submitting a request and getting the first response. (Lower is better.)
+
+Important Formulas:
+- Turnaround Time (TAT) = Completion Time − Arrival Time
+- Waiting Time (WT) = Turnaround Time − Burst Time
+- Response Time (RT) = First CPU Start Time − Arrival Time
+- Average Waiting Time = Total Waiting Time / Number of Processes
+- Average Turnaround Time = Total Turnaround Time / Number of Processes
+
+3.2 CPU Scheduling Algorithms
+3.2.1 First Come First Serve (FCFS)
+Definition: FCFS is a non-preemptive scheduling algorithm in which the process that arrives first gets the CPU first.
+
+Working:
+1. Processes are arranged according to arrival time.
+2. First arriving process gets the CPU.
+3. It executes until completion or blocking.
+4. Next process gets the CPU.
+
+Advantages:
+- Simple to implement.
+- Easy to understand.
+- No starvation.
+
+Disadvantages:
+- High average waiting time.
+- Convoy effect may occur.
+- Not suitable for interactive systems.
+
+Convoy Effect: When short processes wait for a long process to complete.
+
+3.2.2 Shortest Job First (SJF)
+Definition: SJF is a scheduling algorithm that selects the process with the smallest CPU burst time.
+
+Types:
+1. Non-Preemptive SJF – Once a process starts execution, it continues until completion or blocking.
+2. Preemptive SJF (Shortest Remaining Time First) – A new process with a shorter remaining burst time can preempt the running process.
+
+Advantages:
+- Gives minimum average waiting time when burst times are known.
+- Efficient for short processes.
+
+Disadvantages:
+- Difficult to predict CPU burst time.
+- Long processes may suffer starvation.
+- Not suitable when burst times are unknown.
+
+3.2.3 Priority Scheduling
+Definition: Priority scheduling selects the process having the highest priority for CPU execution.
+1. Each process is assigned a priority.
+2. Highest-priority process executes first.
+3. Can be preemptive or non-preemptive.
+4. If priorities are equal, FCFS can be used.
+
+Advantages:
+- Important processes execute first.
+- Useful in priority-based systems.
+
+Disadvantages:
+- Low-priority processes may suffer starvation.
+- Priority management is required.
+
+Aging: Aging is a technique of gradually increasing the priority of waiting processes to prevent starvation.
+
+
+3.2.4 Round Robin Scheduling (RR)
+Definition: Round Robin is a preemptive scheduling algorithm in which each process gets a fixed amount of CPU time called Time Quantum.
+
+Working:
+1. Processes are placed in a circular ready queue.
+2. Each process gets CPU for a fixed time quantum.
+3. If completed, it leaves the queue.
+4. If not completed, it goes to the end of the queue.
+5. The next process gets the CPU.
+
+Advantages:
+- Fair CPU allocation.
+- Good response time.
+- Suitable for time-sharing systems.
+- Prevents starvation in normal operation.
+
+Disadvantages:
+- Too small time quantum causes more context switches.
+- Too large time quantum behaves like FCFS.
+- Performance depends on time quantum.
+
+3.2.5 Multilevel Queue Scheduling
+Definition: Multilevel Queue Scheduling divides the ready queue into multiple separate queues based on process types.
+
+Working:
+1. Ready queue is divided into different queues.
+2. Each queue has its own scheduling algorithm.
+3. Processes are permanently assigned to a particular queue.
+4. CPU is allocated according to queue priority or time sharing.
+Example of Queues:
+1. System Processes.
+2. Interactive Processes.
+3. Batch Processes.
+4. Student Processes.
+
+Advantages:
+- Separates different types of processes.
+- Each queue can use a different algorithm.
+- Easy to manage process categories.
+
+Disadvantages:
+- Lower-priority queues may suffer starvation.
+- Processes cannot easily move between queues.
+
+
+3.2.6 Multilevel Feedback Queue Scheduling
+Definition: Multilevel Feedback Queue Scheduling allows processes to move between different queues based on their CPU usage and behaviour.
+
+Working:
+1. Multiple queues are created.
+2. Each queue has a different priority.
+3. New processes enter the highest-priority queue.
+4. Processes using too much CPU may move to lower-priority queues.
+5. Waiting processes may move to higher-priority queues.
+
+Advantages:
+- Flexible scheduling.
+- Prevents starvation using priority adjustment.
+- Suitable for interactive processes.
+
+Disadvantages:
+- Complex to implement.
+- Requires proper selection of queue priorities and time quantum.
+
+Important Comparison of CPU Scheduling Algorithms
+| Algorithm | Type | Selection Basis |
+|---|---|---|
+| FCFS | Non-preemptive | Arrival time |
+| SJF | Non-preemptive | Shortest burst time |
+| SRTF | Preemptive | Shortest remaining time |
+| Priority | Both | Highest priority |
+| Round Robin | Preemptive | Time quantum |
+| Multilevel Queue | Both | Fixed queue priority |
+| Multilevel Feedback Queue | Both | Process behaviour and queue priority |
+
+
+
+
+
+UNIT 4: Memory Management
+
+4.1 Introduction
+Definition: Memory management is an operating system function that manages primary memory (RAM) and allocates memory to processes.
+
+Functions:
+1. Keeps track of memory usage.
+2. Allocates memory to processes.
+3. Deallocates memory after execution.
+4. Provides memory protection.
+5. Manages sharing of memory.
+6. Supports virtual memory.
+4.1.1 Basic Hardware
+1. Main memory (RAM) stores programs and data currently being used.
+2. CPU directly accesses registers and main memory.
+3. Registers are the fastest storage locations.
+4. Memory Management Unit (MMU) translates logical addresses into physical addresses.
+5. OS protects memory from unauthorized access.
+Memory Hierarchy:
+        Registers
+           ↓
+       Cache Memory
+           ↓
+       Main Memory
+           ↓
+      Secondary Storage
+
+Speed decreases as we move down the hierarchy, while storage capacity generally increases.
+
+4.1.2 Address Binding
+Definition: Address binding is the process of mapping program instructions and data to memory addresses.
+
+Types of Address Binding:
+1. Compile-Time Binding
+   - Address is decided during compilation.
+   - Used when memory location is known in advance.
+2. Load-Time Binding
+   - Address is decided when the program is loaded into memory.
+   - Requires relocatable code.
+3. Execution-Time Binding
+   - Address is decided during program execution.
+   - Process can move between memory locations.
+   - Requires hardware support like MMU.
+   
+4.1.3 Logical versus Physical Address Space
+Logical Address:
+1. Generated by the CPU.
+2. Also called virtual address.
+3. Visible to the program.
+4. Translated by MMU.
+Physical Address:
+1. Actual address in main memory.
+2. Used by memory hardware.
+3. Obtained after address translation.
+
+Difference:
+| Logical Address | Physical Address |
+|---|---|
+| Generated by CPU. | Actual memory address. |
+| Also called virtual address. | Also called real address. |
+| Visible to the program. | Not directly visible to the user program. |
+| Translated by MMU. | Used by memory hardware. |
+
+
+4.1.4 Dynamic Loading
+Definition: Dynamic loading is a technique in which a routine is loaded into memory only when it is needed.
+
+Features:
+1. Entire program is not loaded at once.
+2. Required routines are loaded during execution.
+3. Saves memory space.
+4. Useful for large programs.
+5. Improves memory utilization.
+Example: A rarely used error-handling routine is loaded only when an error occurs.
+
+4.1.5 Dynamic Linking and Shared Libraries
+Dynamic Linking:
+1. Linking of library routines is postponed until execution time.
+2. Program uses a small piece of code called stub.
+3. Stub locates the required library routine.
+4. Reduces program size.
+5. Allows libraries to be updated separately.
+Shared Libraries:
+1. Library code can be shared by multiple programs.
+2. Avoids loading multiple copies of the same library.
+3. Saves memory.
+4. Improves resource utilization.
+Example: Shared libraries in Linux (.so files).
+
+
+4.2 Swapping
+Definition: Swapping is a memory management technique in which a process is temporarily moved from main memory to secondary storage and later brought back into memory.
+
+Working:
+1. OS selects a process from main memory.
+2. Process is moved to backing store (swap space).
+3. Free memory becomes available.
+4. Another process is loaded into memory.
+5. The swapped-out process can later be brought back.
+
+Advantages:
+- Increases degree of multiprogramming.
+- Frees main memory.
+- Allows more processes to run.
+
+Disadvantages:
+- Slow due to disk operations.
+- Increases execution time.
+- Excessive swapping reduces performance.
+
+4.3 Contiguous Memory Allocation
+Definition: Contiguous memory allocation is a technique in which each process is allocated a single continuous block of memory.
+1. Main memory is divided into partitions.
+2. Each process occupies one continuous block.
+3. OS occupies a separate portion of memory.
+4. Remaining memory is allocated to processes.
+4.3.1 Memory Mapping and Protection
+1. Base Register – Stores the starting physical address of a process.
+2. Limit Register – Stores the size of the process's logical address space.
+3. CPU generates a logical address.
+4. MMU checks whether the address is within the limit.
+5. Valid address is added to the base register.
+6. Invalid addresses generate a trap to the OS.
+Formula:
+
+Physical Address = Base Address + Logical Address
+
+
+4.3.2 Memory Allocation
+There are three important memory allocation techniques.
+
+1. First Fit
+- Allocates the first available memory block that is large enough.
+- Simple and fast.
+- May create external fragmentation.
+2. Best Fit
+- Allocates the smallest available block that is large enough.
+- Searches for the closest size.
+- May create many small unused holes.
+3. Worst Fit
+- Allocates the largest available memory block.
+- Leaves a large remaining free block.
+- May waste large memory blocks.
+
+
+4.3.3 Fragmentation
+Definition: Fragmentation is the wastage of memory that occurs when memory is divided into small or unusable pieces.
+
+Types:
+
+1. Internal Fragmentation
+1. Occurs inside an allocated memory block.
+2. Allocated block is larger than required memory.
+3. Unused space remains inside the block.
+4. Common in fixed-size memory allocation.
+2. External Fragmentation
+1. Occurs outside allocated memory blocks.
+2. Free memory is divided into small non-contiguous blocks.
+3. Total free memory may be sufficient, but continuous memory is unavailable.
+4. Common in variable-size memory allocation.
+
+Difference:
+| Internal Fragmentation | External Fragmentation |
+|---|---|
+| Occurs inside allocated blocks. | Occurs between allocated blocks. |
+| Memory is wasted within a block. | Free memory is divided into holes. |
+| Common in fixed-size allocation. | Common in variable-size allocation. |
+| Compaction cannot solve it directly. | Compaction can reduce it. |
+
+
+4.4 Segmentation Memory Management
+
+4.4.1 Basic Concept
+Definition: Segmentation is a memory management technique in which a program is divided into variable-sized logical segments.
+
+Examples of Segments:
+1. Code Segment.
+2. Data Segment.
+3. Stack Segment.
+4. Heap Segment.
+Features:
+1. Each segment has a different size.
+2. Each segment represents a logical part of a program.
+3. Logical address consists of segment number and offset.
+4. Uses a segment table.
+5. Supports memory protection and sharing.
+
+Advantages:
+- Supports logical division of programs.
+- Easy sharing of segments.
+- Provides protection.
+
+Disadvantages:
+- External fragmentation may occur.
+- Segment table management is required.
+- Memory allocation is complex.
+
+4.4.2 Segmentation Hardware
+Segmentation uses a segment table.
+
+Each segment table entry contains:
+1. Base – Starting physical address of the segment.
+2. Limit – Length of the segment.
+Logical Address:
+< Segment Number, Offset >
+
+Address Translation:
+1. CPU generates segment number and offset.
+2. Segment number is used to access the segment table.
+3. Offset is checked against the segment limit.
+4. If valid, offset is added to the base address.
+5. Physical address is generated.
+Formula:
+
+Physical Address = Segment Base + Offset
+
+If offset is greater than or equal to the segment limit, an error trap occurs.
+
+4.5 Paging Memory Management
+
+4.5.1 Basic Concept
+Definition: Paging is a memory management technique in which logical memory is divided into fixed-size blocks called pages and physical memory is divided into fixed-size blocks called frames.
+
+Features:
+1. Pages are of equal size.
+2. Frames are of equal size.
+3. Any page can be stored in any available frame.
+4. Uses a page table for address translation.
+5. Eliminates external fragmentation.
+
+Advantages:
+- No external fragmentation.
+- Efficient memory utilization.
+- Supports virtual memory.
+- Easy memory allocation.
+
+Disadvantages:
+- Internal fragmentation may occur.
+- Page table requires extra memory.
+- Address translation creates overhead.
+
+
+4.5.2 Hardware Support
+Paging hardware uses a page table to translate logical addresses into physical addresses.
+
+Logical Address contains:
+1. Page Number (p).
+2. Page Offset (d).
+Physical Address contains:
+1. Frame Number (f).
+2. Frame Offset (d).
+Address Translation:
+1. CPU generates a logical address.
+2. Page number is used to access the page table.
+3. Page table provides the frame number.
+4. Offset remains unchanged.
+5. Frame number and offset form the physical address.
+
+Important Components:
+- Page Table – Maps pages to frames.
+- PTBR – Page Table Base Register stores the starting address of the page table.
+- TLB – Translation Lookaside Buffer stores recently used page table entries for faster translation.
+
+
+4.5.3 Protection
+1. Each page table entry contains protection information.
+2. Read, write and execute permissions are provided.
+3. Valid-invalid bit indicates whether a page is valid.
+4. Prevents unauthorized memory access.
+5. Protects processes from accessing other processes' memory.
+4.5.4 Shared Pages
+1. Allows multiple processes to share the same memory pages.
+2. Common code can be shared between processes.
+3. Saves physical memory.
+4. Shared code is usually read-only.
+5. Data pages can also be shared when required.
+Example: Multiple users running the same program can share its common code pages.
+
+
+4.6 Demand Paging
+4.6.1 Basic Concept
+Definition: Demand paging is a virtual memory technique in which a page is loaded into main memory only when it is required.
+
+Working:
+1. Process starts execution.
+2. Required page is checked in memory.
+3. If page is present, execution continues.
+4. If page is absent, page fault occurs.
+5. OS finds the required page on secondary storage.
+6. Loads the page into an available frame.
+7. Updates the page table.
+8. Restarts the interrupted instruction.
+
+Advantages:
+- Saves memory.
+- Reduces initial loading time.
+- Allows execution of large programs.
+- Increases degree of multiprogramming.
+
+Disadvantages:
+- Page faults cause delays.
+- Requires additional hardware and OS support.
+- Excessive page faults reduce performance.
+
+
+4.6.2 Performance of Demand Paging
+Effective Access Time (EAT):
+
+EAT depends on memory access time and page fault rate.
+
+Formula:
+
+EAT = (1 − p) × ma + p × page fault service time
+
+Where:
+- p = Page fault rate.
+- ma = Memory access time.
+- Page fault service time = Time required to handle a page fault.
+Important: Page fault service time is much higher than normal memory access time because disk operations are involved.
+4.7 Page Replacement Algorithms
+Definition: Page replacement algorithms decide which page should be removed from memory when a new page needs to be loaded and no free frame is available.
+
+
+4.7.1 FIFO (First In First Out)
+Definition: FIFO replaces the page that entered memory first.
+
+Working:
+1. Pages are loaded into frames.
+2. Oldest page is replaced first.
+3. New page is inserted.
+4. Replacement follows arrival order.
+Advantages:
+- Simple to implement.
+- Easy to understand.
+Disadvantages:
+- May replace frequently used pages.
+- Can suffer from Belady's Anomaly.
+Belady's Anomaly: Sometimes increasing the number of page frames increases the number of page faults.
+
+
+4.7.2 Optimal Page Replacement
+Definition: Optimal page replacement replaces the page that will not be used for the longest time in the future.
+
+Working:
+1. Check the future page references.
+2. Find the page whose next use is farthest away.
+3. Replace that page.
+4. Continue the process.
+
+Advantages:
+- Gives minimum possible page faults.
+- Used as a standard for comparison.
+
+Disadvantages:
+- Future page references are not known.
+- Not practically implementable in general operating systems.
+
+
+4.7.3 LRU (Least Recently Used)
+Definition: LRU replaces the page that has not been used for the longest time in the past.
+
+Working:
+1. Track the recent usage of pages.
+2. Identify the least recently used page.
+3. Replace it with the new page.
+4. Update the page usage information.
+
+Advantages:
+- Uses past behaviour to predict future use.
+- Generally performs better than FIFO.
+
+Disadvantages:
+- Requires tracking page usage.
+- Implementation can be costly.
+MFU (Most Frequently Used)
+Definition: MFU replaces the page that has been used the maximum number of times.
+
+Working:
+1. Maintain a counter for each page.
+2. Count how frequently each page is used.
+3. Select the page with the highest count.
+4. Replace it with the new page.
+
+Advantages:
+- Can be useful in certain page usage patterns.
+- Uses frequency information.
+
+Disadvantages:
+- Frequently used pages may be important.
+- Performance depends on page reference patterns.
+
+
+4.7.4 Second Chance Algorithm
+Definition: Second Chance is an improved FIFO page replacement algorithm that uses a reference bit to give recently used pages another chance.
+
+Working:
+1. Each page has a reference bit.
+2. When a page is accessed, its reference bit becomes 1.
+3. Oldest page is checked for replacement.
+4. If reference bit is 0, page is replaced.
+5. If reference bit is 1, it is reset to 0 and the page gets another chance.
+6. The next page is checked.
+
+Advantages:
+- Better than simple FIFO in many situations.
+- Considers recent page usage.
+- Reduces unnecessary replacements.
+
+Disadvantages:
+- More complex than FIFO.
+- May require scanning multiple pages.
+
+
+Important Comparison of Page Replacement Algorithms
+
+| Algorithm | Replacement Basis |
+|---|---|
+| FIFO | Oldest loaded page |
+| Optimal | Page used farthest in future |
+| LRU | Least recently used page |
+| MFU | Most frequently used page |
+| Second Chance | FIFO with reference bit |
