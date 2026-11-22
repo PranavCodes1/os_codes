@@ -1019,3 +1019,289 @@ Important Comparison of Page Replacement Algorithms
 | LRU | Least recently used page |
 | MFU | Most frequently used page |
 | Second Chance | FIFO with reference bit |
+
+
+
+
+UNIT 5: System Security
+
+5.1 The Security Problem
+Definition: System security refers to protecting computer systems, data and resources from unauthorized access, misuse, modification and destruction.
+
+Main Security Goals:
+1. Confidentiality – Information should be accessible only to authorized users.
+2. Integrity – Data should not be modified by unauthorized users.
+3. Availability – Resources should be available when required.
+4. Authentication – Verifies the identity of users.
+5. Authorization – Determines what an authenticated user can access.
+
+
+Common Security Problems:
+- Unauthorized access.
+- Data theft.
+- Malware attacks.
+- Data modification.
+- Network attacks.
+- Password attacks.
+
+
+5.2 Program Threats
+Program threats are malicious programs or techniques that damage systems or steal information.
+
+5.2.1 Trojan Horse
+Definition: A Trojan Horse is a malicious program that appears to be useful or legitimate but performs harmful activities secretly.
+
+Features:
+1. Disguises itself as genuine software.
+2. Can steal confidential information.
+3. May damage files.
+4. Can create unauthorized access.
+5. Requires users to execute or install it.
+Example: A fake software application that steals passwords.
+
+
+5.2.2 Trap Door
+Definition: A Trap Door is a hidden entry point in a program that allows unauthorized access by bypassing normal security checks.
+
+Features:
+1. Bypasses normal authentication.
+2. Provides secret access to a system.
+3. Can be intentionally inserted by a programmer.
+4. Creates security risks.
+Example: A hidden password that allows access to a program.
+
+
+5.2.3 Logic Bomb
+Definition: A Logic Bomb is malicious code that executes when a specific condition or event occurs.
+
+Features:
+1. Remains inactive until triggered.
+2. Executes when a particular condition is satisfied.
+3. Can delete or modify files.
+4. May cause system damage.
+Example: A program that deletes files on a specific date.
+
+
+5.2.4 Stack and Buffer Overflow
+Stack Overflow:
+1. Occurs when the call stack exceeds its allocated memory.
+2. Usually happens due to excessive recursion or large stack allocation.
+3. May crash the program.
+4. Can sometimes be exploited to execute malicious code.
+
+
+Buffer Overflow:
+
+Definition: Buffer Overflow occurs when a program writes more data into a buffer than its allocated capacity.
+
+Features:
+1. Extra data overwrites adjacent memory.
+2. Can cause program crashes.
+3. May allow attackers to execute malicious code.
+4. Occurs due to improper input validation.
+Example: Storing 20 characters in a buffer that can hold only 10 characters.
+
+
+5.2.5 Viruses
+Definition: A computer virus is a malicious program that attaches itself to other files or programs and replicates when the infected program executes.
+
+Features:
+1. Attaches itself to files or programs.
+2. Replicates itself.
+3. Can corrupt or delete data.
+4. Can slow down the system.
+5. Usually requires a host program to spread.
+
+Types of Viruses:
+1. Boot Sector Virus – Infects the boot sector.
+2. File Virus – Infects executable files.
+3. Macro Virus – Infects documents containing macros.
+4. Polymorphic Virus – Changes its code to avoid detection.
+5.3 System and Network Threats
+
+
+5.3.1 Worms
+Definition: A Worm is a standalone malicious program that replicates itself and spreads across computer networks.
+
+Features:
+1. Does not require a host file.
+2. Spreads automatically through networks.
+3. Consumes network bandwidth.
+4. Can slow down systems.
+5. May install other malware.
+
+
+Difference between Virus and Worm:
+
+
+| Virus | Worm |
+|---|---|
+| Requires a host file or program. | Standalone program. |
+| Usually spreads when infected files execute. | Spreads automatically through networks. |
+| Infects files. | Exploits network vulnerabilities. |
+| Replication depends on host execution. | Can replicate independently. |
+
+5.3.2 Port Scanning
+Definition: Port scanning is a technique used to identify open ports and available network services on a computer.
+
+Features:
+1. Checks different network ports.
+2. Identifies active services.
+3. Helps detect security vulnerabilities.
+4. Used by network administrators.
+5. Can also be used by attackers to find weaknesses.
+Example: Checking whether ports 80 and 443 are open on a web server.
+
+
+5.3.3 Denial of Service (DoS)
+Definition: Denial of Service is an attack in which an attacker makes a computer system or network service unavailable to legitimate users.
+
+Features:
+1. Sends excessive requests to a server.
+2. Consumes system resources.
+3. Makes services slow or unavailable.
+4. Interrupts normal operations.
+
+Types:
+1. DoS – Attack originates from a single source.
+2. DDoS – Distributed Denial of Service uses multiple systems to attack a target.
+
+
+5.4 Cryptography as a Security Tool
+Definition: Cryptography is the technique of securing information by converting readable data into an unreadable format.
+
+Important Terms:
+1. Plaintext – Original readable message.
+2. Ciphertext – Encrypted unreadable message.
+3. Encryption – Converting plaintext into ciphertext.
+4. Decryption – Converting ciphertext into plaintext.
+5. Key – Value used for encryption and decryption.
+
+
+5.4.1 Encryption
+Definition: Encryption is the process of converting readable data into an unreadable format using an encryption algorithm and key.
+
+Types of Encryption:
+
+1. Symmetric Encryption
+1. Uses the same key for encryption and decryption.
+2. Fast and efficient.
+3. Key must be shared securely.
+4. Example: AES.
+2. Asymmetric Encryption
+1. Uses two different keys.
+2. Public key is used for encryption.
+3. Private key is used for decryption.
+4. Provides secure key exchange.
+5. Example: RSA.
+
+
+Difference:
+| Symmetric Encryption | Asymmetric Encryption |
+|---|---|
+| Uses one key. | Uses two keys. |
+| Faster. | Generally slower. |
+| Key sharing is difficult. | Public key can be shared openly. |
+| Example: AES. | Example: RSA. |
+
+5.5 User Authentication
+Definition: User authentication is the process of verifying the identity of a user before allowing access to a computer system.
+
+Types of Authentication:
+1. Password-Based Authentication – Uses username and password.
+2. Biometric Authentication – Uses fingerprint, face or iris.
+3. Token-Based Authentication – Uses security tokens or smart cards.
+4. Two-Factor Authentication (2FA) – Uses two different authentication factors.
+
+Authentication Factors:
+1. Something You Know – Password or PIN.
+2. Something You Have – Smart card or mobile phone.
+3. Something You Are – Fingerprint or face.
+
+Advantages:
+- Prevents unauthorized access.
+- Protects confidential information.
+- Improves system security.
+
+
+5.6 Implementing Security Defenses
+Security defenses are techniques used to protect computer systems against attacks.
+
+Important Security Measures:
+1. Authentication – Verify user identity.
+2. Access Control – Restrict access to resources.
+3. Encryption – Protect confidential information.
+4. Antivirus – Detect and remove malware.
+5. Firewall – Monitor network traffic.
+6. Software Updates – Fix security vulnerabilities.
+7. Backup – Restore lost or damaged data.
+8. Intrusion Detection – Detect suspicious activities.
+9. Strong Passwords – Prevent unauthorized access.
+
+
+5.7 Firewalling to Protect Systems and Networks
+Definition: A Firewall is a security system that monitors and controls incoming and outgoing network traffic based on predefined security rules.
+
+Functions:
+1. Blocks unauthorized network access.
+2. Allows legitimate network traffic.
+3. Monitors incoming and outgoing connections.
+4. Protects internal networks.
+5. Helps prevent network attacks.
+
+
+Types of Firewalls:
+1. Packet Filtering Firewall – Filters packets based on IP address, port and protocol.
+2. Stateful Inspection Firewall – Tracks active network connections.
+3. Proxy Firewall – Acts as an intermediary between users and external networks.
+4. Application-Level Firewall – Filters traffic at the application layer.
+5. Next-Generation Firewall (NGFW) – Provides advanced security features.
+
+Advantages:
+- Protects against unauthorized access.
+- Monitors network traffic.
+- Improves network security.
+- Blocks suspicious connections.
+
+Limitations:
+- Cannot prevent every type of attack.
+- Cannot fully protect against insider threats.
+- Requires proper configuration.
+
+
+5.8 Computer Security Classification
+Computer security classification refers to categorizing systems according to their security requirements and level of protection.
+
+The Trusted Computer System Evaluation Criteria (TCSEC) classifies computer systems into four major divisions.
+1. Division D – Minimal Protection
+1. Provides the lowest level of security.
+2. Does not meet higher security requirements.
+3. Has minimal security controls.
+4. Example: Systems that have failed higher-level evaluation.
+2. Division C – Discretionary Protection
+1. Provides user-based access control.
+2. Includes authentication mechanisms.
+3. Allows users to control access to resources.
+4. Includes security auditing.
+Subdivisions:
+- C1 – Discretionary Security Protection.
+- C2 – Controlled Access Protection.
+3. Division B – Mandatory Protection
+1. Provides mandatory access control.
+2. Uses security labels.
+3. Provides stronger security mechanisms.
+4. Prevents unauthorized information access.
+Subdivisions:
+- B1 – Labeled Security Protection.
+- B2 – Structured Protection.
+- B3 – Security Domains.
+4. Division A – Verified Protection
+1. Provides the highest level of security in TCSEC.
+2. Uses formal security verification.
+3. Requires detailed security design.
+4. Provides strong security assurance.
+Remember the order:
+
+D → C → B → A
+
+Security level increases from D to A.
